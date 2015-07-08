@@ -1,0 +1,19 @@
+<ion-view ng-attr-view-title="{{ tagName }}">
+  <ion-content>
+    <div class="list card" ng-show="topics">
+      <a class="topic item item-icon-right" ng-repeat="topic in topics" ng-attr-href="#/messagelist/{{ topic.id }}">
+        <h2 ng-bind-html="topic.title"></h2>
+
+          <div class="table">
+              <p class="username cell" ng-bind-html="topic.username"></p>
+              <p class="tags cell right">
+                  <span class="tag" ng-repeat="tag in topic.tags" ng-bind-html="tag"></span>
+              </p>
+          </div>
+
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </a>
+    </div>
+    <div class="loading" ng-show="!topics">Loading...</div>
+  </ion-content>
+</ion-view>

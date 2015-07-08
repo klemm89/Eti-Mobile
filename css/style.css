@@ -1,0 +1,30 @@
+#login-content {
+    margin-top: 25px;
+}
+
+.item h2 {
+    white-space: normal;
+}
+
+.loading {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.table {
+    display: table;
+    width: 100%;
+}
+.cell {
+    display: table-cell;
+}
+.right {
+    text-align: right;
+}
+.tags .tag {  margin-left: 15px;
+    margin-bottom: 2px !important;
+    color: #B3A5A5;
+    font-size: 0.7em;
+    border-radius: 8px;
+    display: inline-block;
+}
