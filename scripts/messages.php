@@ -47,6 +47,9 @@ $pattern = '|<div class="message-container.*?>.*?'.
 
 if(is_local()) {
     $messageList = file_get_contents('../test_topic.html');
+    if($_GET['page'] > 1) {
+        $messageList = '';
+    }
 }
 preg_match_all($pattern, $messageList, $rowMatch, PREG_SET_ORDER);
 

@@ -13,9 +13,17 @@ angular.module('etiMobile.controllers', [])
         $scope.topicTitle = 'Topic Title';
         $scope.messages = [];
         $scope.page = 1;
+        $scope.getMoreMessages = true;
 
         $scope.getMessages = function () {
             Topics.getMessageList($scope.topicId, $scope.page).then(function (messages) {
+                if(messages.length === 0) {
+                    $scope.getMoreMessages = false;
+                }
+                else {
+                    $scope.page++;
+                }
+
                 messages.map(function (message) {
                     $scope.messages.push(message);
                 });
