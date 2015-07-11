@@ -4,7 +4,7 @@
         <div class="list card" ng-show="messages">
             <div class="message item item-text-wrap item-avatar" ng-repeat="message in messages">
                 <!--<h2 ng-bind-html="topic.title"></h2>-->
-                <img ng-src="{{message.img}}">
+                <img ng-src="{{message.avatar}}">
                 <h2 ng-bind-html="message.username"></h2>
                 <p ng-bind-html="message.body"></p>
             </div>
