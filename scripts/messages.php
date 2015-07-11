@@ -80,7 +80,7 @@ $pattern = '~'.
 
 $topicMatch = array();
 
-
+print_r($rowMatch);
 
 foreach($rowMatch as $key => $row) {
     preg_match_all($pattern, $row[0], $topicMatcher, PREG_SET_ORDER);
