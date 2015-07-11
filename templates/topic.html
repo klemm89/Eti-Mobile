@@ -7,7 +7,7 @@
                     <img ng-src="//{{message.avatar}}" ng-hide="!message.avatar">
                     <h2 class="username" ng-bind-html="message.username"></h2>
                 </div>
-                <p class="message-body" ng-bind-html="message.body"></p>
+                <p class="message-body" ng-show="message.body" ng-bind-html="message.body"></p>
             </div>
         </ion-list>
 <!--
