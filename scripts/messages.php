@@ -56,7 +56,7 @@ $pattern = '~'.
     'Posted:.*? (.*? AM|PM).*?' .
     '</div.*?>.*?' .
     'class="message">(.*?)' .
-    '(---<br />(.+?))?</td>.*?' .
+    '(---<br />(.{1,500}))?</td>.*?' .
     'class="userpic">(.*?".*?(\w{2,4}\.dealtwith\.it.+?)")?.*?</td>' .
     '~su';
 
