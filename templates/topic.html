@@ -1,14 +1,22 @@
 
 <ion-view view-title="{{topicTitle}}">
     <ion-content class="padding">
-        <div class="list card" ng-show="messages">
+        <ion-list class="list card">
             <div class="message item item-text-wrap item-avatar" ng-repeat="message in messages">
                 <!--<h2 ng-bind-html="topic.title"></h2>-->
                 <img ng-src="//{{message.avatar}}" ng-hide="!message.avatar">
                 <h2 ng-bind-html="message.username"></h2>
                 <p ng-bind-html="message.body"></p>
             </div>
-        </div>
+        </ion-list>
+<!--
         <div class="loading" ng-show="!messages">Loading...</div>
+-->
+
+        <ion-infinite-scroll
+                on-infinite="getMessages()"
+                distance="10%"
+                >
+        </ion-infinite-scroll>
     </ion-content>
 </ion-view>

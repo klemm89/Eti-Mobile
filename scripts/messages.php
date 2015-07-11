@@ -34,7 +34,7 @@ function showMatches($matchArr) {
     }
 }
 
-$message = 'http://boards.endoftheinter.net/showmessages.php?topic=' . $_GET['topic'];
+$message = 'http://boards.endoftheinter.net/showmessages.php?topic=' . $_GET['topic'] . '&page=' . $_GET['page'];
 //$cookie = 'evt=0; PHPSESSID=ic1vn4mculnqliqa997l3cuu92; userid=13800; session=672da5f6ae12753202e2ecf14d15a314; __utma=13742947.1128807782.1405582647.1406932156.1406949521.9; __utmb=13742947.1.10.1406949521; __utmc=13742947; __utmz=13742947.1405622965.3.2.utmcsr=the402.net|utmccn=(referral)|utmcmd=referral|utmcct=/whitescreen/';
 
 $cookie = $_SESSION['eticookie'];
