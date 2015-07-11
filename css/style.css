@@ -40,3 +40,15 @@
 .jump-arrow {
     display: none;
 }
+
+.spoiler_on_close {
+    display: none;
+}
+.spoiler_on_open {
+    color: black;
+    background-color: black;
+}
+.spoiler_on_open:hover {
+    background-color: transparent;
+    color: gray;
+}
