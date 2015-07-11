@@ -46,36 +46,18 @@ $pattern = '|<div class="message-container.*?>.*?'.
 
 
 if(is_local()) {
-    $messageList = '<div class="message-container" id="m138424192"><div class="message-top"><b>From:</b><a href="//endoftheinter.net/profile.php?user=23115">Kraken</a> | <b>Posted:</b> 1/26/2014 10:18:08 AM |<a href="//boards.endoftheinter.net/showmessages.php?topic=8759327&amp;u=23115">Filter</a> |<a href="//boards.endoftheinter.net/showmessages.php?topic=8759327&amp;thread=138424192">Replies (1)</a> |<a href="/message.php?id=138424192&amp;topic=8759327&amp;r=0">Message Detail</a> |<a href="/postmsg.php?topic=8759327&amp;quote=138424192" onclick="return QuickPost.publish(\'quote\', this);">Quote</a></div><table class="message-body"><tr><td msgid="t,8759327,138424192@0" class="message"><div class="imgs"><a target="_blank" imgsrc="http://i4.endoftheinter.net/i/n/b2ec12b575c9559e6450849ca228687b/Capricorn.jpg" href="//images.endoftheinter.net/imap/b2ec12b575c9559e6450849ca228687b/Capricorn.jpg"><span class="img-placeholder" style="width:700px;height:357px" id="u0_7"></span><script type="text/javascript">onDOMContentLoaded(function(){new ImageLoader($("u0_7"), "\/\/i4.dealtwith.it\/i\/n\/b2ec12b575c9559e6450849ca228687b\/Capricorn.jpg", 700, 357)})</script></a><div style="clear:both"></div></div>---<br />Former Kroin<br /><i>Dance. You gotta dance. As long as the music plays.</i></td><td class="userpic"><div class="userpic-holder"><a href="//images.endoftheinter.net/imap/00483d91ca17fd93efa6097a05969dae/tentaclekitty.jpg"><span class="img-placeholder" style="width:106px;height:150px" id="u0_8"></span><script type="text/javascript">onDOMContentLoaded(function(){new ImageLoader($("u0_8"), "\/\/i1.dealtwith.it\/i\/t\/00483d91ca17fd93efa6097a05969dae\/tentaclekitty.jpg", 106, 150)})</script></a></div></td></tr></table></div>';
+    $messageList = file_get_contents('../test_topic.html');
 }
 preg_match_all($pattern, $messageList, $rowMatch, PREG_SET_ORDER);
 
-/*
-<div class="message-container" id="m138424192"><div class="message-top"><b>From:</b>
-<a href="//endoftheinter.net/profile.php?user=23115">Kraken</a> | <b>Posted:</b> 1/26/2014 10:18:08 AM |
-<a href="//boards.endoftheinter.net/showmessages.php?topic=8759327&amp;u=23115">Filter</a> |
-<a href="//boards.endoftheinter.net/showmessages.php?topic=8759327&amp;thread=138424192">Replies (1)</a> |
-<a href="/message.php?id=138424192&amp;topic=8759327&amp;r=0">Message Detail</a> |
-<a href="/postmsg.php?topic=8759327&amp;quote=138424192" onclick="return QuickPost.publish('quote', this);">Quote</a>
-</div>
-<table class="message-body"><tr>
-<td msgid="t,8759327,138424192@0" class="message">
-<div class="imgs">
-<a target="_blank" imgsrc="http://i4.endoftheinter.net/i/n/b2ec12b575c9559e6450849ca228687b/Capricorn.jpg" href="//images.endoftheinter.net/imap/b2ec12b575c9559e6450849ca228687b/Capricorn.jpg"><span class="img-placeholder" style="width:700px;height:357px" id="u0_7"></span><script type="text/javascript">onDOMContentLoaded(function(){new ImageLoader($("u0_7"), "\/\/i4.dealtwith.it\/i\/n\/b2ec12b575c9559e6450849ca228687b\/Capricorn.jpg", 700, 357)})</script></a>
-<div style="clear:both"></div></div>---<br />
-Former Kroin<br />
-<i>Dance. You gotta dance. As long as the music plays.</i></td>
-<td class="userpic"><div class="userpic-holder"><a href="//images.endoftheinter.net/imap/00483d91ca17fd93efa6097a05969dae/tentaclekitty.jpg"><span class="img-placeholder" style="width:106px;height:150px" id="u0_8"></span><script type="text/javascript">onDOMContentLoaded(function(){new ImageLoader($("u0_8"), "\/\/i1.dealtwith.it\/i\/t\/00483d91ca17fd93efa6097a05969dae\/tentaclekitty.jpg", 106, 150)})</script></a></div></td></tr></table></div>
-
-*/
 $pattern = '~'.
     '<div.*?class="message-top".*?>.*?' .
     'From:.+?user=.+?>(.*?)</a>.*?' .
     'Posted:.*? (.*? AM|PM).*?' .
     '</div.*?>.*?' .
     'class="message">(.*?)' .
-    '(?:---<br />)?(.*?)</td>.*?' .
-    'class="userpic">.*?".*?(\w{2,4}\.dealtwith\.it.+?)".*?</td>' .
+    '(---<br />(.+?))?</td>.*?' .
+    'class="userpic">(.*?".*?(\w{2,4}\.dealtwith\.it.+?)")?.*?</td>' .
     '~su';
 
 $topicMatch = array();
@@ -88,22 +70,13 @@ foreach($rowMatch as $key => $row) {
     //print_r($topicMatch);
 }
 
-/* test data */
-if(is_local()) {
-    //$messages[] = message(123, 'S Otaku', 'Test one', array('LUE', 'Strong Homo'), '4m', '154 (+2)', true);
-
-    $newMessage = array();
-    $newMessage['id'] = null;
-    $newMessage['username'] = 'S Otaku';
-    $newMessage['time'] = 'asdf';
-    $newMessage['body'] = 'Update: script now supports tagging. If you "Follow & Tag" you will be prompted for a tag. Later you can "Unfollow (by tag)" and you will again be prompted for a tag. Only the users matching the tag you enter will be unfollowed Update: script now supports tagging. If you "Follow & Tag" you will be prompted for a tag. Later you can "Unfollow (by tag)" and you will again be prompted for a tag. Only the users matching the tag you enter will be unfollowed ';
-    $newMessage['sig'] = 'asdf';
-    $newMessage['avatar'] = 'http://i3.dealtwith.it/i/n/a97534935e3c601b3bdd7d300fb0e307/s%20otaku.jpg';
-
-    $messages[] = $newMessage;
-}
-
 //print_r($topicMatch);
+
+function stripBody ($msg) {
+    $msg = str_replace('href=', 'removed-href=', $msg); //strip links
+    $msg = preg_replace('|<br />\s+<br />\s+<br />|su', '<br />', $msg);
+    return $msg;
+}
 
 foreach ($topicMatch as $key => $message) {
     $date = explode('/', explode(' ', $message[2])[0]);
@@ -114,11 +87,12 @@ foreach ($topicMatch as $key => $message) {
     $newMessage['id'] = null;
     $newMessage['username'] = $message[1];
     $newMessage['time'] = $message[2];
-    $newMessage['body'] = $message[3];
-    $newMessage['sig'] = $message[4];
-    $newMessage['avatar'] = 'http://' . str_replace('\\', '', $message[5]);
+    $newMessage['body'] = stripBody($message[3]);
+    $newMessage['sig'] = $message[5];
+    $newMessage['avatar'] = str_replace('\\', '', $message[7]);
 
     $messages[] = $newMessage;
+    //print_r($message);
 }
 
 //print_r($messages);
