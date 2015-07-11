@@ -72,4 +72,5 @@ p.message-body {
 
 .message .username {
     padding-top: 10px;
+    color: gray;
 }
