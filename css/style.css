@@ -28,12 +28,20 @@
     padding-bottom: 0px;
 }
 
-.tags .tag {  margin-left: 15px;
+.tags .tag {
+    margin-left: 2px;
+    padding: 1px 5px;
     margin-bottom: 2px !important;
     color: #B3A5A5;
-    font-size: 0.7em;
+    font-size: 9px;
+    border: 1px solid #CACACA;
     border-radius: 8px;
     display: inline-block;
+    line-height: 1;
+}
+
+.tags .tag:nth-child(1) {
+    margin-left: 10px;
 }
 
 .quoted-message {
@@ -66,6 +74,9 @@
     border-bottom: none;
 }
 
+.topic p.username {
+    color: rgb(142, 142, 142);
+}
 p.message-body {
     color: black;
 }
