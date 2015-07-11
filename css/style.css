@@ -70,6 +70,9 @@ p.message-body {
     color: black;
 }
 
+.message.item {
+    padding: 1px 0 10px 0;
+}
 .message .username {
     padding-top: 10px;
     color: gray;
