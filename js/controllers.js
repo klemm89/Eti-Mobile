@@ -11,12 +11,17 @@ angular.module('etiMobile.controllers', [])
 
     .controller('NewTopicCtrl', function ($scope, $stateParams, Topics) {
         $scope.tagName = $stateParams.tag;
+        $scope.newTopic = {
+            title: '',
+            message: ''
+        };
 
         $scope.submit = function () {
+            console.log($scope);
             Topics.createNewTopic({
                 tag: $scope.tagName,
-                title: $scope.title,
-                message: $scope.message
+                title: $scope.newTopic.title,
+                message: $scope.newTopic.message
             }).then(function (newTopicId) {
                console.log('this should be the new topic id:', newTopicId);
             });

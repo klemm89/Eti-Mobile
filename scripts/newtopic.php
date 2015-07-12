@@ -17,7 +17,7 @@ $doc = new DOMDocument();
 @$doc->loadHTML($newTopicPage);
 $signature = $doc->getElementsByTagName('textarea')->item(1)->nodeValue;
 $hiddenValue = $doc->getElementsByTagName('input')->item(2)->getAttribute('value');
-$messageBody = $_POST['messageBody'];
+$messageBody = $_POST['message'];
 
 $fields = array(
     'title' => urlencode($_POST['title']),
@@ -25,5 +25,8 @@ $fields = array(
     'h' => urlencode($hiddenValue),
     'tag' => 'LUE' //implode('***', explode(',', $_GET['tag']))
 );
+
+print_r($_POST);
+print_r($fields);
 
 HTTP_Post($newTopicUrl, $fields);

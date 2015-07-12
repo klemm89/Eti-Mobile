@@ -4,11 +4,11 @@
         <div class="list card">
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Topic Title</span>
-                <input type="text" ng-model="title">
+                <input type="text" ng-model="newTopic.title">
             </label>
             <label class="new-message item item-input item-stacked-label">
                 <span class="input-label">New Message</span>
-                <textarea ng-model="message"></textarea>
+                <textarea ng-model="newTopic.message"></textarea>
             </label>
         </div>
         <button class="button button-block button-positive" ng-click="submit()">
