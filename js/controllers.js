@@ -40,7 +40,9 @@ angular.module('etiMobile.controllers', [])
         $scope.getMessages = function () {
             Topics.getMessageList($scope.topicId, $scope.page).then(function (messageList) {
                 var messages = messageList.messages;
-                $scope.topic.title = messageList.title;
+                if(messageList.title) {
+                    $scope.topic.title = messageList.title;
+                }
                 
                 if(messages.length === 0) {
                     $scope.getMoreMessages = false;
