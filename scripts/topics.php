@@ -39,6 +39,11 @@ $lue = 'http://boards.endoftheinter.net/topics/' . $tag;
 $cookie = $_SESSION['eticookie'];
 $topicList = HTTP_Get($lue, $cookie);
 
+/* test data */
+if(is_local()) {
+    $topicList = file_get_contents('../test_topic_list.html');
+}
+
 $pattern = '|<tr>.*?'.
     '</tr>|su';
 
@@ -70,15 +75,6 @@ foreach($rowMatch as $key => $row) {
 //echo count($topicMatch) . ', ';
 //showMatches($topicMatch);
 
-
-/* test data */
-if(is_local()) {
-    $topics[] = message(123, 'S Otaku', 'Test one', array('LUE', 'Strong Homo'), '4m', '154 (+2)', true);
-    $topics[] = message(23, 'John Kerry', 'Test one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen', array('LUE', 'Strong Homo'), '4m', '170', false);
-    $topics[] = message(545454, 'George Bush Jr.', 'Hey Come Fuck my Butthole', array('LUE', 'Strong Homo'), '4m', '154 (+2)', true);
-    $topics[] = message(45445545, 'Obummer', 'hahaha im gonna take away all ur guns', array('LUE', 'Strong Homo'), '4m', '1', false);
-    $topics[] = message(45434323, 'WWWWWWWWWWWWWWWWWWWW', 'An Extra Super Really Long Topic Title Test Test Test', array('LUE', 'Strong Homo', 'Hyperdimensional Galactic Neptunia Or Whatever', 'I Know Im Not Popular or Whatever'), 'Dec 31', '5000 (+4999)', true);
-}
 
 foreach ($topicMatch as $key => $topic) {
 
