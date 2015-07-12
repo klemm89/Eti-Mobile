@@ -55,6 +55,8 @@ function HTTP_Post ($url, $fields) {
     curl_setopt($ch, CURLOPT_HTTPGET, 1);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_COOKIE, $_SESSION['eticookie']);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_AUTOREFERER, false);
 
     $result = curl_exec($ch);
     curl_close($ch);
