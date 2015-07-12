@@ -1,4 +1,9 @@
 <ion-view ng-attr-view-title="{{ tagName }}">
+    <ion-nav-buttons side="secondary">
+        <a class="button" href="#/topics/Posted">
+            Posted
+        </a>
+    </ion-nav-buttons>
   <ion-content>
     <div class="list card" ng-show="topics">
       <a class="topic item item-icon-right" ng-repeat="topic in topics" ng-attr-href="#/messagelist/{{ topic.id }}">
@@ -14,6 +19,7 @@
         <i class="icon ion-chevron-right icon-accessory"></i>
       </a>
     </div>
-    <div class="loading" ng-show="!topics">Loading...</div>
+
   </ion-content>
+    <a class="new-topic-button" ng-href="#/newtopic/{{ tagName }}">+</a>
 </ion-view>

@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
@@ -25,12 +26,6 @@
     <ion-nav-bar class="bar-positive">
         <ion-nav-back-button>
         </ion-nav-back-button>
-
-        <ion-nav-buttons side="secondary">
-            <a class="button" href="#/topics/Posted">
-                Posted
-            </a>
-        </ion-nav-buttons>
     </ion-nav-bar>
     <!--
       The views will be rendered in the <ion-nav-view> directive below
