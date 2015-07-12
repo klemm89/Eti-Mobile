@@ -41,7 +41,7 @@ $topicList = HTTP_Get($lue, $cookie);
 
 /* test data */
 if(is_local()) {
-    $topicList = file_get_contents('../test_topic_list.html');
+    $topicList = file_get_contents('../test_data/test_topic_list.html');
 }
 
 $pattern = '|<tr>.*?'.

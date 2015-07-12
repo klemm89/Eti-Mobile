@@ -50,7 +50,7 @@ $titlePattern = '~' .
 
 
 if(is_local()) {
-    $messageList = file_get_contents('../test_topic.html');
+    $messageList = file_get_contents('../test_data/test_topic.html');
     if($_GET['page'] > 1) {
         $messageList = '';
     }
