@@ -28,7 +28,7 @@ $fields = array(
     'submit' => urlencode('Post Message')
 );
 
-
+$newTopicUrl = 'http://boards.endoftheinter.net/postmsg.php';
 $newTopic = HTTP_Post($newTopicUrl, $fields);
 
 echo $newTopic;
