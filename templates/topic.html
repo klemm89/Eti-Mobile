@@ -1,5 +1,5 @@
 
-<ion-view view-title="{{topicTitle}}">
+<ion-view view-title="{{ topic.title }}">
     <ion-nav-buttons side="secondary">
         <a class="button" href="#/topics/Posted">
             Posted
@@ -8,7 +8,7 @@
 
     <ion-content class="padding">
         <ion-list class="list card">
-            <div class="message item item-text-wrap" ng-repeat="message in messages">
+            <div class="message item item-text-wrap" ng-repeat="message in topic.messages">
                 <div class="item avatar item-avatar">
                     <img ng-src="//{{message.avatar}}" ng-hide="!message.avatar">
                     <h2 class="username" ng-bind-html="message.username"></h2>

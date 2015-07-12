@@ -30,15 +30,18 @@ angular.module('etiMobile.controllers', [])
 
     .controller('MsgListCtrl', function ($scope, $stateParams, Topics) {
         $scope.topicId = $stateParams.topicId;
-        $scope.topicTitle = '';
-        $scope.messages = [];
+        $scope.topic = {
+            title: '',
+            messages: []
+        };
         $scope.page = 1;
         $scope.getMoreMessages = true;
 
         $scope.getMessages = function () {
             Topics.getMessageList($scope.topicId, $scope.page).then(function (messageList) {
                 var messages = messageList.messages;
-                $scope.topicTitle = messageList.title;
+                $scope.topic.title = messageList.title;
+                
                 if(messages.length === 0) {
                     $scope.getMoreMessages = false;
                 }
@@ -47,7 +50,7 @@ angular.module('etiMobile.controllers', [])
                 }
 
                 messages.map(function (message) {
-                    $scope.messages.push(message);
+                    $scope.topic.messages.push(message);
                 });
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             });
