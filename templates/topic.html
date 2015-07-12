@@ -1,8 +1,6 @@
 
 <ion-view>
-    <ion-nav-title>
-        {{ topic.title }}
-    </ion-nav-title>
+    <ion-nav-title ng-bind-html="topic.title"></ion-nav-title>
     <ion-nav-buttons side="secondary">
         <a class="button" href="#/topics/Posted">
             Posted
