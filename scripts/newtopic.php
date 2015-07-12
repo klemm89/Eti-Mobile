@@ -24,7 +24,8 @@ $fields = array(
     'title' => urlencode($request->title),
     'message' => urlencode($messageBody . "\n" . $signature),
     'h' => urlencode($hiddenValue),
-    'tag' => 'LUE' //implode('***', explode(',', $_GET['tag']))
+    'tag' => 'LUE', //implode('***', explode(',', $_GET['tag']))
+    'submit' => 'Post Message'
 );
 
 
