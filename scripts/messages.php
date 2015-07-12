@@ -77,7 +77,9 @@ foreach($rowMatch as $key => $row) {
 
 function stripBody ($msg) {
     $msg = str_replace('href=', 'removed-href=', $msg); //strip links
-    $msg = preg_replace('|<br />\s+<br />\s+<br />|su', '<br />', $msg);
+    $msg = str_replace('<br>', '<br />', $msg);
+    $msg = preg_replace('|(<br ?/?>\s+)+|su', '<br />', $msg);
+    $msg = preg_replace('|(<br ?/?>\s*)$|su', '', $msg);
     return $msg;
 }
 
