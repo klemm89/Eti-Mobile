@@ -73,6 +73,9 @@
 .item.avatar {
     border-bottom: none;
     padding-left: 50px;
+    padding-bottom: 0;
+    background-color: transparent;
+    margin-bottom: -10px;
 }
 
 .avatar img {
