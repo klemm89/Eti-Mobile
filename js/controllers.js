@@ -8,6 +8,11 @@ angular.module('etiMobile.controllers', [])
             console.log('topics', topics);
         });
     })
+
+    .controller('NewTopicCtrl', function ($scope, Topics) {
+
+    })
+
     .controller('MsgListCtrl', function ($scope, $stateParams, Topics) {
         $scope.topicId = $stateParams.topicId;
         $scope.topicTitle = '';
@@ -29,7 +34,6 @@ angular.module('etiMobile.controllers', [])
                 messages.map(function (message) {
                     $scope.messages.push(message);
                 });
-                $scope.page++;
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             });
         };
