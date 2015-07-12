@@ -27,7 +27,7 @@ $fields = array(
     'tag' => 'LUE' //implode('***', explode(',', $_GET['tag']))
 );
 
-print_r($_POST);
-print_r($fields);
 
-HTTP_Post($newTopicUrl, $fields);
+$newTopic = HTTP_Post($newTopicUrl, $fields);
+
+echo $newTopic;
