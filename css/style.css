@@ -70,8 +70,13 @@
     color: gray;
 }
 
-.avatar {
+.item.avatar {
     border-bottom: none;
+    padding-left: 50px;
+}
+
+.avatar img {
+    left: 0 !important;
 }
 
 .topic p.username {
