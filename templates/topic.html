@@ -1,5 +1,11 @@
 
 <ion-view view-title="{{topicTitle}}">
+    <ion-nav-buttons side="secondary">
+        <a class="button" href="#/topics/Posted">
+            Posted
+        </a>
+    </ion-nav-buttons>
+
     <ion-content class="padding">
         <ion-list class="list card">
             <div class="message item item-text-wrap" ng-repeat="message in messages">
