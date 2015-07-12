@@ -9,7 +9,7 @@ angular.module('etiMobile.controllers', [])
         });
     })
 
-    .controller('NewTopicCtrl', function ($scope, $stateParams, Topics) {
+    .controller('NewTopicCtrl', function ($scope, $stateParams, $location, Topics) {
         $scope.tagName = $stateParams.tag;
         $scope.newTopic = {
             title: '',
@@ -23,7 +23,7 @@ angular.module('etiMobile.controllers', [])
                 title: $scope.newTopic.title,
                 message: $scope.newTopic.message
             }).then(function (newTopicId) {
-               console.log('this should be the new topic id:', newTopicId);
+                $location.path('messagelist/' + newTopicId);
             });
         };
     })

@@ -32,7 +32,7 @@ angular.module('etiMobile.services', [])
             },
             createNewTopic: function (topicData) {
                 return $http.post('scripts/newtopic.php', topicData).then(function (response) {
-                   return response;
+                   return response.data.topicId;
                 });
             }
         };

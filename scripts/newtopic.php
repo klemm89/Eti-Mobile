@@ -30,5 +30,12 @@ $fields = array(
 
 $newTopicUrl = 'http://boards.endoftheinter.net/postmsg.php';
 $newTopic = HTTP_Post($newTopicUrl, $fields);
+preg_match('~Location:.*?topic=(\d+)~su', $newTopic, $topicIdMatch);
+$newTopicId = $topicIdMatch[1];
+if(is_local()) {
+    $newTopicId = '98765';
+}
 
-echo $newTopic;
+$result = array();
+$result['topicId'] = $newTopicId;
+echo json_encode($result);
