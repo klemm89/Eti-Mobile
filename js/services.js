@@ -24,7 +24,10 @@ angular.module('etiMobile.services', [])
             },
             getMessageList: function (topicId, page) {
                 return $http.get('scripts/messages.php?topic=' + topicId + '&page=' + page).then(function (response) {
-                    return deserializer.messages(response.data.messages);
+                    return {
+                        title: response.data.topicTitle,
+                        messages: deserializer.messages(response.data.messages)
+                    }
                 });
             }
         };

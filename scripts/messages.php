@@ -44,6 +44,10 @@ $pattern = '|<div class="message-container.*?>.*?'.
     '<table.*?>.*?</table.*?>.*?'.
     '</div.*?>|su';
 
+$titlePattern = '~' .
+    '<h1>(.*?)</h1>' .
+    '~su';
+
 
 if(is_local()) {
     $messageList = file_get_contents('../test_topic.html');
@@ -52,6 +56,8 @@ if(is_local()) {
     }
 }
 preg_match_all($pattern, $messageList, $rowMatch, PREG_SET_ORDER);
+preg_match($titlePattern, $messageList, $titleMatch);
+$topicTitle = $titleMatch[1];
 
 $pattern = '~'.
     '<div.*?class="message-top".*?>.*?' .
@@ -104,4 +110,5 @@ foreach ($topicMatch as $key => $message) {
 
 $result = array();
 $result['messages'] = $messages;
+$result['topicTitle'] = $topicTitle;
 echo json_encode($result);

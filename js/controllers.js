@@ -10,13 +10,15 @@ angular.module('etiMobile.controllers', [])
     })
     .controller('MsgListCtrl', function ($scope, $stateParams, Topics) {
         $scope.topicId = $stateParams.topicId;
-        $scope.topicTitle = 'Topic Title';
+        $scope.topicTitle = '';
         $scope.messages = [];
         $scope.page = 1;
         $scope.getMoreMessages = true;
 
         $scope.getMessages = function () {
-            Topics.getMessageList($scope.topicId, $scope.page).then(function (messages) {
+            Topics.getMessageList($scope.topicId, $scope.page).then(function (messageList) {
+                var messages = messageList.messages;
+                $scope.topicTitle = messageList.title;
                 if(messages.length === 0) {
                     $scope.getMoreMessages = false;
                 }
