@@ -9,8 +9,18 @@ angular.module('etiMobile.controllers', [])
         });
     })
 
-    .controller('NewTopicCtrl', function ($scope, Topics) {
+    .controller('NewTopicCtrl', function ($scope, $stateParams, Topics) {
+        $scope.tagName = $stateParams.tag;
 
+        $scope.submit = function () {
+            Topics.createNewTopic({
+                tag: $scope.tagName,
+                title: $scope.title,
+                message: $scope.message
+            }).then(function (newTopicId) {
+               console.log('this should be the new topic id:', newTopicId);
+            });
+        };
     })
 
     .controller('MsgListCtrl', function ($scope, $stateParams, Topics) {

@@ -96,3 +96,31 @@ p.message-body {
     padding-top: 10px;
     color: gray;
 }
+
+.new-topic-button {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    font-size: 25px;
+    color: white;
+    background-color: rgba(56, 126, 245, 0.74);
+    border-radius: 50px;
+    padding-left: 13px;
+    padding-top: 7px;
+    text-decoration: none;
+}
+
+.new-message {
+    height: 300px;
+}
+
+.new-message textarea {
+    width: 100%;
+    height: 90%;
+}
+
+.new-topic .input-label {
+    color: #B6B6B6;
+}

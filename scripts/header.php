@@ -18,8 +18,9 @@ function HTTP_Get($page, $cookies)
     curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch2, CURLOPT_HEADER, 0);
     curl_setopt($ch2, CURLOPT_URL, $page);
-    curl_setopt($ch2, CURLOPT_HTTPGET, 0);
+    curl_setopt($ch2, CURLOPT_HTTPGET, 1);
     curl_setopt($ch2, CURLOPT_COOKIE, $cookies);
+
     ob_start();
     $return = curl_exec($ch2);
     ob_end_clean();
@@ -27,8 +28,38 @@ function HTTP_Get($page, $cookies)
 
     if (!$return)
         return FALSE;
-    else
+    else {
+        $return = str_replace('<head>',
+            '<head><meta http-equiv="content-type" content="text/html; charset=utf-8"/>',
+            $return);
         return $return;
+    }
+}
+
+function fields_string($fields) {
+    $fields_string = '';
+    foreach ($fields as $key => $value) {
+        $fields_string .= $key . '=' . $value . '&';
+    }
+    return rtrim($fields_string, '&');
+}
+
+function HTTP_Post ($url, $fields) {
+    $ch = curl_init();
+
+//set the url, number of POST vars, POST data
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, count($fields));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, fields_string($fields));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 1);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_AUTOREFERER, false);
+
+    $result = curl_exec($ch);
+    curl_close($ch);
+
+    return $result;
 }
 
 function getCredentials($user, $pass)
@@ -73,7 +104,7 @@ function getCredentials($user, $pass)
     if ($valid) {
         $_SESSION['eticookie'] = $cookies;
     }
-    if(is_local()) {
+    if (is_local()) {
         $_SESSION['eticookie'] = 'asdf';
         $valid = true;
     }
@@ -111,17 +142,19 @@ function plural($var)
 }
 
 
-function is_local() { //this is just a stupid way for me to get mock data when running the app locally
-    $whitelist = array( '127.0.0.1', '::1' );
-    if( in_array( $_SERVER['REMOTE_ADDR'], $whitelist) )
+function is_local()
+{ //this is just a stupid way for me to get mock data when running the app locally
+    $whitelist = array('127.0.0.1', '::1');
+    if (in_array($_SERVER['REMOTE_ADDR'], $whitelist))
         return true;
 }
 
-if(is_local()) {
+if (is_local()) {
     $loggedIn = true;
 }
 
-function validateLogin ($loggedIn) {
+function validateLogin($loggedIn)
+{
     if (!$loggedIn) {
         unset($_SESSION['username']);
         unset($_SESSION['eticookie']);
@@ -133,76 +166,73 @@ function validateLogin ($loggedIn) {
 function timeAgo($time_ago)
 {
     $time_ago = strtotime($time_ago);
-    $cur_time   = time();
-    $time_elapsed   = $cur_time - $time_ago;
-    $seconds    = $time_elapsed ;
-    $minutes    = round($time_elapsed / 60 );
-    $hours      = round($time_elapsed / 3600);
-    $days       = round($time_elapsed / 86400 );
-    $weeks      = round($time_elapsed / 604800);
-    $months     = round($time_elapsed / 2600640 );
-    $years      = round($time_elapsed / 31207680 );
+    $cur_time = time();
+    $time_elapsed = $cur_time - $time_ago;
+    $seconds = $time_elapsed;
+    $minutes = round($time_elapsed / 60);
+    $hours = round($time_elapsed / 3600);
+    $days = round($time_elapsed / 86400);
+    $weeks = round($time_elapsed / 604800);
+    $months = round($time_elapsed / 2600640);
+    $years = round($time_elapsed / 31207680);
     // Seconds
-    if($seconds <= 60){
+    if ($seconds <= 60) {
         return ""; //dont show time for this minute
-    }
-    //Minutes
-    else if($minutes <=60){
-        if($minutes==1){
+    } //Minutes
+    else if ($minutes <= 60) {
+        if ($minutes == 1) {
             return "1m";
-        }
-        else{
+        } else {
             return "$minutes" . "m";
         }
-    }
-    //Hours
-    else if($hours <=24){
-        if($hours==1){
+    } //Hours
+    else if ($hours <= 24) {
+        if ($hours == 1) {
             return "1h";
-        }else{
+        } else {
             return "$hours" . "h";
         }
-    }
-    //Days
-    else if($days <= 7){
-        if($days==1){
+    } //Days
+    else if ($days <= 7) {
+        if ($days == 1) {
             return "1d";
-        }else{
+        } else {
             return "$days" . "d";
         }
-    }
-    //Weeks
-    else if($weeks <= 4.3){
-        if($weeks==1){
+    } //Weeks
+    else if ($weeks <= 4.3) {
+        if ($weeks == 1) {
             return "1w";
-        }else{
+        } else {
             return "$weeks" . "w";
         }
-    }
-    //Months
-    else if($months <=12){
-        if($months==1){
+    } //Months
+    else if ($months <= 12) {
+        if ($months == 1) {
             return "1m";
-        }else{
+        } else {
             return "$months" . "m";
         }
-    }
-    //Years
-    else{
-        if($years==1){
+    } //Years
+    else {
+        if ($years == 1) {
             return "1y";
-        }else{
+        } else {
             return "$years" . "y";
         }
     }
 }
 
-function flatten($array) {
+function flatten($array)
+{
 
     $return = array();
     foreach ($array as $key => $value) {
-        if (is_array($value)){ $return = array_merge($return, flatten($value));}
-        else {$return[$key] = $value;}
+        if (is_array($value)) {
+            $return = array_merge($return, flatten($value));
+        } else {
+            $return[$key] = $value;
+        }
     }
     return $return;
 

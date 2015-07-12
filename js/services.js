@@ -29,6 +29,11 @@ angular.module('etiMobile.services', [])
                         messages: deserializer.messages(response.data.messages)
                     }
                 });
+            },
+            createNewTopic: function (topicData) {
+                return $http.post('scripts/newtopic.php', topicData).then(function (response) {
+                   return response;
+                });
             }
         };
     });
