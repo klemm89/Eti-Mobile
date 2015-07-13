@@ -34,6 +34,15 @@ angular.module('etiMobile.services', [])
                 return $http.post('scripts/newtopic.php', topicData).then(function (response) {
                    return response.data.topicId;
                 });
+            },
+            postNewMessage: function (messageData) {
+                return $http.post('scripts/newmessage.php', messageData).then(function (response) {
+                    return {
+                        topicId: response.data.topicId,
+                        page: response.data.page || 1,
+                        mid: response.data.messageId
+                    };
+                })
             }
         };
     });

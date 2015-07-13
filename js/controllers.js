@@ -5,7 +5,6 @@ angular.module('etiMobile.controllers', [])
 
         Topics.getTopics($scope.tagName).then(function (topics) {
             $scope.topics = topics;
-            console.log('topics', topics);
         });
     })
 
@@ -17,7 +16,6 @@ angular.module('etiMobile.controllers', [])
         };
 
         $scope.submit = function () {
-            console.log($scope);
             Topics.createNewTopic({
                 tag: $scope.tagName,
                 title: $scope.newTopic.title,
@@ -28,13 +26,28 @@ angular.module('etiMobile.controllers', [])
         };
     })
 
+    .controller('NewMsgCtrl', function ($scope, $stateParams, $location, Topics) {
+        $scope.message = {
+            body: ''
+        };
+
+        $scope.postMessage = function () {
+            Topics.postNewMessage({
+                topicId: $stateParams.topicId,
+                message: $scope.message.body
+            }).then(function (newPost) {
+                $location.path('messagelist/' + newPost.topicId + '/' + newPost.page);
+            });
+        };
+    })
+
     .controller('MsgListCtrl', function ($scope, $stateParams, Topics) {
         $scope.topicId = $stateParams.topicId;
+        $scope.page = $stateParams.page || 1;
         $scope.topic = {
             title: '',
             messages: []
         };
-        $scope.page = 1;
         $scope.getMoreMessages = true;
 
         $scope.getMessages = function () {

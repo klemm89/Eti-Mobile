@@ -33,15 +33,20 @@ angular.module('etiMobile', ['ionic', 'etiMobile.controllers', 'etiMobile.servic
                 templateUrl: 'templates/topics.html',
                 controller: 'TopicListCtrl'
             })
-            .state('messages', {
-                url: "/messagelist/:topicId",
-                templateUrl: 'templates/topic.html',
-                controller: 'MsgListCtrl'
-            })
             .state('newtopic', {
                 url: "/newtopic/:tag",
                 templateUrl: 'templates/new_topic.html',
                 controller: 'NewTopicCtrl'
+            })
+            .state('messages', {
+                url: "/messagelist/:topicId/:page",
+                templateUrl: 'templates/message_list.html',
+                controller: 'MsgListCtrl'
+            })
+            .state('newmessage', {
+                url: "/newmessage/:topicId",
+                templateUrl: 'templates/new_message.html',
+                controller: 'NewMsgCtrl'
             });
 
         // if none of the above states are matched, use this as the fallback
