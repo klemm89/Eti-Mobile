@@ -18,7 +18,7 @@ angular.module('etiMobile.directives', [])
             template: '' +
             '<label class="new-message item item-input item-stacked-label"> ' +
             '<span class="input-label">New Message</span> ' +
-            '<textarea ng-model="messageModel"></textarea> ' +
+            '<textarea ng-model="model"></textarea> ' +
             '</label>',
             link: function (scope, element, attrs) {
             }
